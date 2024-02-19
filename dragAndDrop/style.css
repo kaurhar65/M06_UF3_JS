@@ -9,29 +9,29 @@
     justify-content: center;
     margin-bottom: 25px;
 }
-
+    
 .drop-area.active{
     background-color: #ddd;
     color: #000000;
     border: 2px dashed blue;
 }
-
+    
 .drop-area button{
-background-color: blue;
-color: #ffffff;
-padding: 8px 15px;
-text-align:center;
-border:0px;
-border-radius: 4px;
-cursor: pointer;
-border:2px solid blue;
+    background-color: blue;
+    color: #ffffff;
+    padding: 8px 15px;
+    text-align:center;
+    border:0px;
+    border-radius: 4px;
+    cursor: pointer;
+    border:2px solid blue;
 }
-
+    
 .drop-area button:hover{
-background-color: transparent;
-color: blue;
+    background-color: transparent;
+    color: blue;
 }
-
+    
 .previewImage{
     width: 100%;
     display:flex;
@@ -48,17 +48,17 @@ color: blue;
 }
 
 .previewImage .removeBtn{
-background-color: red;
-border-radius: 100%;
-font-size: 15px;
-padding: 1px;
-color: #fff;
-border: 2px solid red;
-margin-left: 40px;
-cursor: pointer;
+    background-color: red;
+    border-radius: 100%;
+    font-size: 15px;
+    padding: 1px;
+    color: #fff;
+    border: 2px solid red;
+    margin-left: 40px;
+    cursor: pointer;
 }
-
+        
 .previewImage .removeBtn:hover{
-background-color:transparent;
-color:red;
+    background-color:transparent;
+    color:red;
 }
