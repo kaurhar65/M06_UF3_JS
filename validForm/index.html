@@ -8,15 +8,15 @@
 </head>
 <body>
     <form id="registroForm">
-        <label for="usuari">Nom:</label>
-        <input type="text" id="usuari" required><br><br>
+        <label for="usuari">Nombre:</label>
+        <input type="text" id="usuari" ><br><br>
     
         <label for="email">Correo</label>
-        <input type="email" id="email" required><br><br>
+        <input type="email" id="email" ><br><br>
         <p id="errorCorreo"> Correo incorrecto </p>
 
         <label for="contrasenya">Contraseña:</label>
-        <input type="password" id="contrasenya" required><br><br>
+        <input type="password" id="contrasenya"><br><br>
         <div id="mensajesError">
             <p id="8Char" > 8 caracteres como mínimo </p>
             <p id="mayus" > 1 letra mayúscula </p>
@@ -24,12 +24,14 @@
             <p id = "specialChar" > 1 caracter especial </p>
             <p id="1num" >1 número </p>
         </div>
+
         <label for="contrasenya2">Repite la contraseña:</label>
-        <input type="password" id="contrasenya2" required><br><br>
+        <input type="password" id="contrasenya2" ><br><br>
         <p id="errorPassword"> Las contraseñas no coinciden </p>
 
-        <label for="direccion">Codi Postal:</label>
+        <label for="direccion">Código Postal:</label>
         <input type="text" id="direccion" required><br><br>
+        <p id="errorPostal"  >1 número </p>
     
         <input type="submit" value="Registra't">
       </form>

@@ -1,4 +1,4 @@
-
+let formValid = true;
 //Comprobar si el campo está vaio o lleno.
 const inputs = document.querySelectorAll('input');
 for(let i=0; i<inputs.length; i++){
@@ -8,9 +8,11 @@ for(let i=0; i<inputs.length; i++){
         if(inputActual.value === ''){
             inputActual.classList.add('campBuit');
             inputActual.classList.remove('campPle');
+            formValid = false;
         }else{
             inputActual.classList.remove('campBuit');
             inputActual.classList.add('campPle');
+            formValid = true;
         }
     });
 }
@@ -35,10 +37,12 @@ inputCorreo.addEventListener('focusout', function(){
         inputCorreo.classList.remove('campBuit');
         inputCorreo.classList.add('campPle');
         mensajeCorreo.hidden = true;
+        formValid = true;
     }else{
         inputCorreo.classList.add('campBuit');
         inputCorreo.classList.remove('campPle');
         mensajeCorreo.hidden = false;
+        formValid = false;
     }   
 
 });
@@ -105,11 +109,27 @@ inputConfirmCorreo.addEventListener('focusout', function(){
         inputConfirmCorreo.classList.remove('campBuit');
         inputConfirmCorreo.classList.add('campPle');
         mensajePass.hidden = true; 
+        formValid = true;
     } else {
         inputConfirmCorreo.classList.add('campBuit');
         inputConfirmCorreo.classList.remove('campPle');
         mensajePass.hidden = false;
+        formValid = false;
     }   
 });
 
-//ejercicio5
+// //ejercicio5
+    const inputPostal = document.getElementById('direccion');
+    const mensajePostal = document.getElementById('errorPostal');
+    mensajePostal.hidden = true;
+
+    inputPostal.addEventListener('focusout', function(){
+        if (inputPostal.value.trim() === '') {
+            mensajePostal.hidden = false;
+            formValid = false;
+        } else {
+            mensajePostal.hidden = true;
+            formValid = true;
+        }        
+    });
+    
