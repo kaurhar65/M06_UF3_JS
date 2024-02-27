@@ -15,7 +15,7 @@ for(let i=0; i<inputs.length; i++){
     });
 }
 
-//Validar el correo
+// Validar el correo
 function validateEmail(email) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     return true;
@@ -42,3 +42,51 @@ inputCorreo.addEventListener('focusout', function(){
     }   
 
 });
+
+const inputPass = document.getElementById('contrasenya');
+const divMensajes = document.getElementById('mensajesError');
+divMensajes.hidden = true;
+const mensajes = {
+    longitud: document.getElementById('8Char'),
+    mayus: document.getElementById('mayus'),
+    minus: document.getElementById('minus'),
+    specialChar: document.getElementById('specialChar'),
+    num: document.getElementById('1num')
+};
+
+
+inputPass.addEventListener('input', function(){
+    divMensajes.hidden = false;
+    let password = inputPass.value;
+    mensajes.longitud.style.color = longitud(password) ? 'green' : 'red';
+    mensajes.mayus.style.color = letrasMayus(password) ? 'green' : 'red';
+    mensajes.minus.style.color = letrasMinus(password) ? 'green' : 'red';
+    mensajes.specialChar.style.color = contieneCharEsp(password) ? 'green' : 'red';
+    mensajes.num.style.color = contieneNumero(password) ? 'green' : 'red';
+});
+
+
+function longitud(password){
+    return password.length >= 8 && password.length <= 15 ? true : false;
+}
+
+function letrasMinus(password){
+    let lowerCaseLetters = /[a-z]/;
+    return lowerCaseLetters.test(password) ? true : false;
+
+}
+
+function letrasMayus(password){
+    let upperCaseLetters = /[A-Z]/;
+    return upperCaseLetters.test(password) ? true : false;
+}
+
+function contieneNumero(password){
+    let numbers = /[0-9]/;
+    return numbers.test(password) ? true : false;
+}
+
+function contieneCharEsp(password){
+    let specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    return specialChars.test(password) ? true : false;
+}
