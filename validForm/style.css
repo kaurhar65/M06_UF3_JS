@@ -1,0 +1,16 @@
+
+input{
+  background-color: rgb(200, 198, 195);
+}
+.campBuit{
+  border-color: red;
+}
+.campPle{
+  border-color: green;
+}
+
+#errorCorreo{
+  color: red;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+}
