@@ -90,3 +90,26 @@ function contieneCharEsp(password){
     let specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     return specialChars.test(password) ? true : false;
 }
+
+//ejercicio4
+
+const inputConfirmCorreo = document.getElementById('contrasenya2');
+const mensajePass = document.getElementById('errorPassword');
+mensajePass.hidden = true;
+
+inputConfirmCorreo.addEventListener('focusout', function(){
+    const inputPass = document.getElementById('contrasenya');
+    let pass1 = inputPass.value;
+    let pass2 = inputConfirmCorreo.value;
+    if(pass1 === pass2){
+        inputConfirmCorreo.classList.remove('campBuit');
+        inputConfirmCorreo.classList.add('campPle');
+        mensajePass.hidden = true; 
+    } else {
+        inputConfirmCorreo.classList.add('campBuit');
+        inputConfirmCorreo.classList.remove('campPle');
+        mensajePass.hidden = false;
+    }   
+});
+
+//ejercicio5
