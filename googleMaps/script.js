@@ -1,52 +1,80 @@
-//Maps
+// Variables
 let map;
+let marker;
+let estilosMapa;
+
 async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
-
-  map = new Map(document.getElementById("map"), {
-    center: { lat: 41.390205, lng: 2.154007 },
-    zoom: 8,
-  });
-}
-
-initMap();
-
-//Marker
-function initMap() {
-  const myLatLng = { lat: 41.406208, lng: 2.1893617 };
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
+  const myLatLng = { lat: 41.390205, lng: 2.154007 };
+  map = new google.maps.Map(document.getElementById("map"), {
     center: myLatLng,
+    zoom: 12,
   });
 
-  new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: myLatLng,
     map,
-    title: "Hello World!",
+    title: "aquí",
+    icon: "persona.png",
   });
+
+  let infowindow = new google.maps.InfoWindow({
+    content: document.getElementById("adreca").value,
+  });
+  marker.addListener("click", () => {
+    infowindow.open(map, marker);
+  });
+
+  fetch("data.json")
+    .then((response) => response.json())
+    .then((data) => {
+      estilosMapa = data;
+      map.setOptions({ styles: estilosMapa });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  geocalitza();
+  centrar();
 }
 
-
-//latitud de una adreça
-
-function busquedaEspecifica() {
+function geocalitza() {
   let geocoder = new google.maps.Geocoder();
+  let address = document.getElementById("adreca").value;
   geocoder.geocode({ address: address }, function (results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       latitude = results[0].geometry.location.lat();
       longitude = results[0].geometry.location.lng();
-      console.log("biakdiad")
-    }else{
-        console.log("vayaaaa, mala suerte");
+
+      document.getElementById("latitude").value = latitude;
+      document.getElementById("longitude").value = longitude;
+      actualZoom = 16;
+
+      let updatePosition = new google.maps.LatLng(latitude, longitude);
+      marker.setPosition(updatePosition);
+
+      let center = new google.maps.LatLng(latitude, longitude);
+      map.setCenter(center);
+      map.setZoom(actualZoom);
+    } else {
+      alert("Error");
     }
   });
-
-  console.log("ESTA ES MI CASA")
 }
 
-document.getElementById("findLoc").addEventListener("click", function()){
-    let address = document.getElementById("adreca").value;
-    busquedaEspecifica(address)
+function centrar() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+
+      map.setCenter(pos);
+      map.setZoom(20);
+      marker.setPosition(pos);
+    });
+  }
 }
 
-window.initMap = initMap;
+document.getElementById("findLoc").addEventListener("click", geocalitza);
+document.getElementById("currentLoc").addEventListener("click", centrar);
